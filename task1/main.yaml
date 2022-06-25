@@ -1,0 +1,24 @@
+- hosts: all
+  tasks:
+    - name: Install httpd
+      yum:
+        name: httpd
+        state: latest
+
+    - name: Start httpd
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Unzip
+      yum:
+        name: unzip
+        state: latest
+
+    - name: Unzip a file to download
+      unarchive:
+        src: https://www.free-css.com/assets/files/free-css-templates/download/page275/roxy.zip
+        dest: /var/www/html
+        remote_src: yes
+
